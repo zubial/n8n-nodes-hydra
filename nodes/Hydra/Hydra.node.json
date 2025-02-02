@@ -1,0 +1,14 @@
+{
+	"node": "n8n-nodes-base.hydra",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Utility"],
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://www.zubial.net/"
+			}
+		]
+	},
+	"alias": ["SecOps"]
+}
