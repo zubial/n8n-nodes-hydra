@@ -1,23 +1,30 @@
-# n8n-nodes-tail
+# HydraNode – Automated Brute Force Testing in n8n
 
 This is a n8n community node.
 
-TailTrigger allows real-time monitoring of a local file to start the workflow whenever a line is added.
+HydraNode is an n8n integration for THC Hydra, a powerful and fast brute-force tool for testing login credentials against various services. This node allows security professionals to automate authentication testing across multiple protocols directly within n8n workflows.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
+
+## Key Features
+
+* Supports Multiple Services (not yet, only SSH) – SSH, FTP, HTTP, SMB, RDP, MySQL, and more.
+* Custom Credential Lists – Use predefined or dynamic username/password lists.
+* Parallel Attacks – Optimize brute-force speed with adjustable thread count.
+* JSON Output – Structured results for easy analysis and integration.
+
 
 ## Installation
 
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-Or manual install with `npm i n8n-nodes-tail`
+Or manual install with `npm i n8n-nodes-hydra`
+https://www.npmjs.com/package/n8n-nodes-hydra
 
-https://www.npmjs.com/package/n8n-nodes-tail
+Install Hydra on n8n instance with  `apt-get install hydra`
 
-## Usage
-Disclaimer: It is not recommended to use this on large log files (such as nginx logs), as it may trigger an excessive number of workflows.
-
-Tip: Use a command like ` | grep ` beforehand to filter the logs and create a smaller file for monitoring.
+## Disclaimer
+⚠ This node is intended for authorized security testing only. Unauthorized use may violate laws and ethical guidelines. Always obtain permission before testing any system. ⚠
 
 ## Compatibility
 

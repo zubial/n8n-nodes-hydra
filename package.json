@@ -1,9 +1,9 @@
 {
   "name": "n8n-nodes-hydra",
-  "version": "1.0.dev",
+  "version": "1.0.0",
   "description": "Hydra",
   "keywords": [
-    "Hydra",
+    "Hydra", "Network",
     "n8n-community-node-package"
   ],
   "license": "MIT",
@@ -29,7 +29,7 @@
     "format": "prettier nodes --write",
     "lint": "eslint nodes package.json",
     "prepublish": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes package.json",
-    "package": "pnpm prepublish && npm pack --pack-destination ./package/"
+    "package": "rimraf ./package/** && pnpm prepublish && npm pack --pack-destination ./package/"
   },
   "files": [
     "dist"

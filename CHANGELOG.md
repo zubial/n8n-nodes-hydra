@@ -1,6 +1,6 @@
-## 1.0.* (dev)
+## 1.0.0
 
 ### Features
 
-* Nmap Local Discovery Network
-* Nmap Local Ports scan
+* Hydra Random Bruteforce
+* Hydra Dictionary Bruteforce

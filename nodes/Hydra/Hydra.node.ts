@@ -10,6 +10,7 @@ import { hydraOperations, hydraParameters, hydraServices } from './HydraDescript
 import { spawn } from 'child_process';
 import moment from 'moment';
 import { HydraBruteForceResult } from './models/HydraBruteForceResult';
+import {ShellUtils} from "./utils/ShellUtils";
 
 export class Hydra implements INodeType {
 	description: INodeTypeDescription = {
@@ -55,28 +56,33 @@ export class Hydra implements INodeType {
 			const empty_password = options.empty_password ? '-e n' : '';
 			const restore = options.restore ? '-R' : '-I';
 			const slow_attack = options.slow_attack ? '-t 1 -W 64' : '';
-			const result_field = (options.result_field as string) || 'result';
+			const result_field = (options.result_field as string) || 'hydra';
 
 			const hydraResult = new HydraBruteForceResult();
 			hydraResult.target = target_host;
 			hydraResult.service = service;
 
-			let command: string = `nmap -help`;
+			const shellUtils = new ShellUtils();
+			const workingDirectory = await shellUtils.resolveHomeFolder('~/');
 
+			let command: string = `nmap -help`;
 			if (operation === 'random_bruteforce') {
 				const username = this.getNodeParameter('username', itemIndex) as string;
 
 				command = `hydra -l ${username} -x 4:4:a1 -V ${aggressive_mode} ${attempt_wait} ${empty_password} ${restore} ${slow_attack} ${service}://${target_host}`;
 			} else if (operation === 'dictionary_bruteforce') {
-				const users_file = this.getNodeParameter('users_file', itemIndex) as string;
-				const passwords_file = this.getNodeParameter('passwords_file', itemIndex) as string;
+				let users_file = this.getNodeParameter('users_file', itemIndex) as string;
+				let passwords_file = this.getNodeParameter('passwords_file', itemIndex) as string;
+
+				users_file = await shellUtils.resolveHomeFolder(users_file);
+				passwords_file = await shellUtils.resolveHomeFolder(passwords_file);
 
 				command = `hydra -L ${users_file} -P ${passwords_file} -V -F ${aggressive_mode} ${attempt_wait} ${empty_password} ${restore} ${slow_attack} ${service}://${target_host}`;
 			}
 
 			console.log(`Hydra starting ${command}`);
 
-			let child = spawn('sh', ['-c', command]);
+			let child = spawn('sh', ['-c', command], {cwd: workingDirectory});
 			child.stderr.pipe(process.stderr); // Redirect stderr to the console for error output.
 
 			const commandStart = moment();
