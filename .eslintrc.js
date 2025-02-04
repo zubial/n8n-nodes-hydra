@@ -53,6 +53,8 @@ module.exports = {
 				'n8n-nodes-base/node-class-description-outputs-wrong': 'off',
 				'n8n-nodes-base/node-class-description-credentials-name-unsuffixed': 'off',
 				'n8n-nodes-base/node-param-description-boolean-without-whether': 'off',
+				'n8n-nodes-base/node-param-type-options-password-missing': 'off',
+				'n8n-nodes-base/node-param-collection-type-unsorted-items': 'off',
 			},
 		},
 	],

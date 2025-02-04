@@ -136,7 +136,7 @@ export const hydraParameters: INodeProperties[] = [
 				name: 'return_attempts',
 				type: 'boolean',
 				default: false,
-				description: 'Return all attempts',
+				description: 'Return all failed attempts',
 			},
 			{
 				displayName: 'Restore Session',

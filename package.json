@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Hydra",
   "keywords": [
-    "Hydra", "Network",
+    "Hydra", "Network", "SecOps", "Zubial",
     "n8n-community-node-package"
   ],
   "license": "MIT",

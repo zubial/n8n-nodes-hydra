@@ -2,9 +2,15 @@ import { spawn } from 'child_process';
 import { CredentialInformation } from 'n8n-workflow';
 
 export class ShellUtils {
-	async sudoCommand(command: string, workingDirectory:string, password: CredentialInformation | undefined): Promise<string> {
+	async sudoCommand(
+		command: string,
+		workingDirectory: string,
+		password: CredentialInformation | undefined,
+	): Promise<string> {
 		return new Promise((resolve, reject) => {
-			let child = spawn('sudo', ['-S', '-k', '-p', 'pwd:', 'sh', '-c', command], {cwd: workingDirectory});
+			let child = spawn('sudo', ['-S', '-k', '-p', 'pwd:', 'sh', '-c', command], {
+				cwd: workingDirectory,
+			});
 			let commandOutput: string = '';
 			let commandError: string = '';
 
@@ -35,9 +41,9 @@ export class ShellUtils {
 		});
 	}
 
-	async command(command: string, workingDirectory:string): Promise<string> {
+	async command(command: string, workingDirectory: string): Promise<string> {
 		return new Promise((resolve, reject) => {
-			let child = spawn('sh', ['-c', command], {cwd: workingDirectory});
+			let child = spawn('sh', ['-c', command], { cwd: workingDirectory });
 			child.stderr.pipe(process.stderr);
 
 			let commandOutput: string = '';

@@ -10,7 +10,7 @@ import { hydraOperations, hydraParameters, hydraServices } from './HydraDescript
 import { spawn } from 'child_process';
 import moment from 'moment';
 import { HydraBruteForceResult } from './models/HydraBruteForceResult';
-import {ShellUtils} from "./utils/ShellUtils";
+import { ShellUtils } from './utils/ShellUtils';
 
 export class Hydra implements INodeType {
 	description: INodeTypeDescription = {
@@ -82,7 +82,7 @@ export class Hydra implements INodeType {
 
 			console.log(`Hydra starting ${command}`);
 
-			let child = spawn('sh', ['-c', command], {cwd: workingDirectory});
+			let child = spawn('sh', ['-c', command], { cwd: workingDirectory });
 			child.stderr.pipe(process.stderr); // Redirect stderr to the console for error output.
 
 			const commandStart = moment();
