@@ -84,6 +84,7 @@ export class Hydra implements INodeType {
 
 			let child = spawn('sh', ['-c', command], { cwd: workingDirectory });
 			child.stderr.pipe(process.stderr); // Redirect stderr to the console for error output.
+			child.stdout.pipe(process.stdout); // Redirect stderr to the console for error output.
 
 			const commandStart = moment();
 			let attemptCount = 0;
