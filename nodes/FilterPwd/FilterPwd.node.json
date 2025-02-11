@@ -1,0 +1,14 @@
+{
+	"node": "n8n-nodes-base.filterPwd",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Cybersecurity", "Utility", "Core Nodes"],
+	"resources": {
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/danielmiessler/SecLists"
+			}
+		]
+	},
+	"alias": ["SecOps"]
+}

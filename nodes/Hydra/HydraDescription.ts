@@ -14,10 +14,16 @@ export const hydraOperations: INodeProperties[] = [
 				action: 'Bruteforce a service with random password',
 			},
 			{
-				name: 'Dictionary BruteForce',
+				name: 'One Dictionary BruteForce',
+				value: 'one_dictionary_bruteforce',
+				description: 'Bruteforce a service from one dictionary',
+				action: 'Bruteforce a service from one dictionary',
+			},
+			{
+				name: 'Dual Dictionary BruteForce',
 				value: 'dictionary_bruteforce',
-				description: 'Bruteforce a service from dictionary',
-				action: 'Bruteforce a service from dictionary',
+				description: 'Bruteforce a service from dual dictionary',
+				action: 'Bruteforce a service from dual dictionary',
 			},
 		],
 		default: 'random_bruteforce',
@@ -61,6 +67,19 @@ export const hydraParameters: INodeProperties[] = [
 		},
 		default: 'root',
 		description: 'The username to bruteforce (-l)',
+	},
+	{
+		displayName: 'Dictionary File',
+		name: 'dictionary_file',
+		type: 'string',
+		required: true,
+		displayOptions: {
+			show: {
+				operation: ['one_dictionary_bruteforce'],
+			},
+		},
+		default: '~/dictionary-list.txt',
+		description: 'The dictionary file user:pass (-C)',
 	},
 	{
 		displayName: 'Users Dictionary File',

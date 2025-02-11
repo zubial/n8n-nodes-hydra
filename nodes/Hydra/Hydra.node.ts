@@ -70,6 +70,12 @@ export class Hydra implements INodeType {
 				const username = this.getNodeParameter('username', itemIndex) as string;
 
 				command = `hydra -l ${username} -x 4:4:a1 -V ${aggressive_mode} ${attempt_wait} ${empty_password} ${restore} ${slow_attack} ${service}://${target_host}`;
+			} else if (operation === 'one_dictionary_bruteforce') {
+				let dictionary_file = this.getNodeParameter('dictionary_file', itemIndex) as string;
+
+				dictionary_file = await shellUtils.resolveHomeFolder(dictionary_file);
+
+				command = `hydra -C ${dictionary_file} -V -F ${aggressive_mode} ${attempt_wait} ${empty_password} ${restore} ${slow_attack} ${service}://${target_host}`;
 			} else if (operation === 'dictionary_bruteforce') {
 				let users_file = this.getNodeParameter('users_file', itemIndex) as string;
 				let passwords_file = this.getNodeParameter('passwords_file', itemIndex) as string;
